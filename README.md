@@ -254,6 +254,148 @@ Reportado a AbuseIPDB: SI
 
 ---
 
+## Configuracion Avanzada del Honeypot
+
+### Multiples puertos de escucha
+
+Por defecto Cowrie solo escucha en el puerto 22 (SSH). Se modifico la configuracion para escuchar en puertos adicionales comunmente atacados, y cada evento registra en que puerto ocurrio el intento:
+
+```ini
+# cowrie.cfg - Seccion de puertos
+# Cowrie corre en puertos altos para no requerir permisos root (>1024)
+# Se usa iptables para redirigir el trafico de los puertos reales hacia estos
+
+[ssh]
+# Puerto interno donde Cowrie escucha realmente
+listen_port = 2222
+
+[telnet]
+# Telnet habilitado para capturar atacantes que usan protocolos legacy
+listen_port = 2323
+enabled = true
+```
+
+```bash
+# Redireccion de puertos con iptables
+# El trafico que llega al puerto 22 real se redirige al puerto interno 2222 de Cowrie
+sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
+
+# Lo mismo para Telnet: trafico en puerto 23 -> puerto interno 2323
+sudo iptables -t nat -A PREROUTING -p tcp --dport 23 -j REDIRECT --to-port 2323
+
+# Puerto 2222 adicional expuesto directamente (algunos scanners lo prueban)
+sudo iptables -t nat -A PREROUTING -p tcp --dport 2222 -j REDIRECT --to-port 2222
+
+# Guardar las reglas para que persistan al reiniciar el servidor
+sudo iptables-save > /etc/iptables/rules.v4
+```
+
+El log parser fue modificado para extraer y registrar el puerto de destino en cada evento:
+
+```python
+# log_parser.py
+# Cowrie registra cada conexion en formato JSON
+# Este fragmento extrae el puerto ademas de los datos estandar
+
+def parse_event(event: dict) -> dict:
+    return {
+        "timestamp":  event.get("timestamp"),
+        "src_ip":     event.get("src_ip"),
+        # dst_port indica en que puerto fue recibido el ataque
+        # util para saber si el atacante usó SSH estandar, Telnet, o un puerto alternativo
+        "dst_port":   event.get("dst_port", "unknown"),
+        "username":   event.get("username"),
+        "password":   event.get("password"),
+        "commands":   event.get("input", []),
+        "session":    event.get("session"),
+    }
+```
+
+---
+
+### Camuflaje del Honeypot (Deception)
+
+Una parte clave del diseno es hacer que el servidor parezca un sistema real en produccion. Cuanto mas convincente se vea, mas tiempo permanece el atacante y mas inteligencia se recolecta.
+
+**Banner SSH personalizado**
+
+El banner es lo primero que ve el atacante al conectarse. Se modifico para imitar un servidor Ubuntu real de una empresa generica:
+
+```ini
+# cowrie.cfg
+[honeypot]
+
+# Nombre del host que vera el atacante al conectarse
+# Evitar nombres obvios como "honeypot", "trap" o "sandbox"
+hostname = web-prod-01
+
+# Banner que se muestra antes del login
+# Imita el banner estandar de un servidor Ubuntu en produccion
+banner_file = etc/banner.txt
+```
+
+```
+# etc/banner.txt
+# Texto que ve el atacante antes de introducir credenciales
+# Usa lenguaje corporativo generico para mayor credibilidad
+Ubuntu 22.04.3 LTS - Authorized access only.
+All connections are monitored and recorded.
+Disconnect IMMEDIATELY if you are not an authorized user.
+```
+
+**Usuario falso con permisos aparentes**
+
+```ini
+# userdb.txt - Lista de credenciales que Cowrie acepta intencionalmente
+# El atacante cree que ha entrado con exito al sistema
+# Formato: usuario:uid:contrasena
+
+# Usuario con nombre corporativo generico para mayor realismo
+admin:0:admin
+admin:0:admin123
+admin:0:password
+root:0:root
+root:0:toor
+root:0:123456
+```
+
+**Variables del sistema falsas**
+
+```ini
+# cowrie.cfg - Sistema operativo simulado
+# Estos valores se muestran cuando el atacante ejecuta comandos como uname -a
+[shell]
+
+# Simular un kernel ligeramente desactualizado
+# Los atacantes suelen buscar versiones vulnerables especificas
+kernel_version = 5.15.0-75-generic
+kernel_build_string = #82-Ubuntu SMP Tue Jun 27 15:25:03 UTC 2023
+
+# Nombre del sistema que aparece en los logs del atacante
+hostname = web-prod-01
+
+# Hardware simulado - servidor generico de produccion
+hardware_platform = x86_64
+operating_system = GNU/Linux
+```
+
+Con esta configuracion el atacante ve esto al conectarse y ejecutar comandos basicos:
+
+```
+# Lo que ve el atacante tras entrar con root:root
+root@web-prod-01:~# uname -a
+Linux web-prod-01 5.15.0-75-generic #82-Ubuntu SMP Tue Jun 27 15:25:03 UTC 2023 x86_64 GNU/Linux
+
+root@web-prod-01:~# whoami
+root
+
+# El atacante cree que tiene acceso root real y sigue ejecutando comandos
+# mientras Cowrie los registra todos silenciosamente
+root@web-prod-01:~# cat /etc/passwd
+```
+
+---
+
 ## Lo que aprendi
 
 - Despliegue y administracion de instancias en **Oracle Cloud Infrastructure**
