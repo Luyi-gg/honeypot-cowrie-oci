@@ -1,0 +1,18 @@
+# Variables de entorno - NUNCA subir al repositorio
+# Contiene tokens y API keys reales
+.env
+
+# Logs reales del honeypot - pueden contener IPs sin anonimizar
+*.json
+*.log
+data/logs/
+
+# Archivos del sistema
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Entorno virtual de Python si lo creas localmente
+venv/
+env/

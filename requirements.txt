@@ -1,0 +1,11 @@
+# Dependencias del proyecto honeypot-cowrie-oci
+# Instalar con: pip install -r requirements.txt
+
+# Para monitorear el archivo de logs en tiempo real sin hacer polling manual
+watchdog==3.0.0
+
+# Para hacer peticiones HTTP a las APIs de Telegram y AbuseIPDB
+requests==2.31.0
+
+# Para cargar las variables de entorno desde el archivo .env
+python-dotenv==1.0.0
