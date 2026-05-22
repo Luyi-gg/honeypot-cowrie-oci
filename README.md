@@ -290,7 +290,7 @@ Este proyecto reporta automáticamente IPs maliciosas a AbuseIPDB, una plataform
 ## Perfil de reportes en AbuseIPDB
 
 <p align="center">
-  <img src="./docs/screenshots/abuseipdb-profile.png" width="450">
+  <img src="./docs/screenshots/abuseipdb-profile.png" width="650">
 </p>
 
 ---
