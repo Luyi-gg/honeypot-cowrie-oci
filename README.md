@@ -100,7 +100,7 @@ Oracle Cloud Infrastructure (OCI)
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/luis-angel-sc/honeypot-cowrie-oci.git
+git clone https://github.com/Luyi-gg/honeypot-cowrie-oci.git
 cd honeypot-cowrie-oci
 ```
 
@@ -205,17 +205,68 @@ Ejemplo de eventos capturados en las primeras 24 horas de operacion:
 }
 ```
 
-### Estadisticas de ejemplo
+## Estadisticas del Honeypot
+
 | Metrica | Valor |
 |---|---|
-| IPs unicas detectadas | +120 en 7 dias |
-| Pais de origen #1 | China |
-| Pais de origen #2 | Rusia |
-| Contrasena mas usada | `admin`, `123456`, `root` |
-| Comando mas ejecutado | `cat /etc/passwd` |
-| IPs reportadas a AbuseIPDB | +80 en 7 dias |
+| IPs unicas detectadas | 2,970 |
+| IPs bloqueadas | 2,702 |
+| Intentos totales | 182,013 |
+| Logins fallidos | 6,095 |
+| Logins exitosos | 13,815 |
+| Comandos ejecutados | 13,616 |
+ 
 
 ---
+
+### Top 20 IPs mas agresivas
+
+| # | IP | Intentos | Pais |
+|---|---|---|---|
+| 1 | 45.85.180.143 | 59,568 | DO |
+| 2 | 139.59.236.63 | 6,138 | SG |
+| 3 | 87.251.64.176 | 4,574 | PL |
+| 4 | 192.109.200.237 | 3,567 | NL |
+| 5 | 213.209.159.154 | 3,530 | DE |
+| 6 | 176.65.132.129 | 3,507 | NL |
+| 7 | 176.65.132.17 | 3,203 | NL |
+| 8 | 45.156.87.204 | 3,159 | NL |
+| 9 | 85.11.167.2 | 2,154 | BG |
+| 10 | 141.227.190.54 | 1,915 | CZ |
+| 11 | 138.2.98.41 | 1,252 | SG |
+| 12 | 141.148.175.56 | 1,172 | US |
+| 13 | 161.97.109.235 | 1,078 | FR |
+| 14 | 64.110.90.250 | 998 | KR |
+| 15 | 138.2.232.2 | 906 | US |
+| 16 | 128.199.87.229 | 836 | SG |
+| 17 | 129.213.137.74 | 834 | US |
+| 18 | 129.153.145.135 | 829 | US |
+| 19 | 206.189.156.94 | 818 | SG |
+| 20 | 209.97.161.72 | 782 | SG |
+
+---
+### Top 10 Paises Atacantes
+
+| # | País | IPs únicas | % del total |
+|---|------|-----------|-------------|
+| 🥇 1 | 🇺🇸 United States | 657 | 19.6% |
+| 🥈 2 | 🇨🇳 China | 390 | 11.6% |
+| 🥉 3 | 🇩🇴 Dominican Republic | 193 | 5.7% |
+| 4 | 🇬🇧 United Kingdom | 133 | 4.0% |
+| 5 | 🇧🇷 Brazil | 95 | 2.8% |
+| 6 | 🇸🇬 Singapore | 86 | 2.6% |
+| 7 | 🇭🇰 Hong Kong | 62 | 1.8% |
+| 8 | 🇮🇳 India | 62 | 1.8% |
+| 9 | 🇩🇪 Germany | 61 | 1.8% |
+| 10 | 🇳🇱 The Netherlands | 53 | 1.6% |
+
+
+---
+
+![Cowrie corriendo](docs/screenshots/cowrie-running.png)
+![Alerta Telegram](docs/screenshots/telegram-alert.png)
+![AbuseIPDB](docs/screenshots/abuseipdb-profile.png)
+![Log de ejemplo](docs/screenshots/sample-log.png)
 
 ## Contribucion a la Comunidad
 
