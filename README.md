@@ -1,5 +1,4 @@
-````md
-# Honeypot SSH/Telnet en la Nube con Reporte Automatico a AbuseIPDB
+# Honeypot SSH/Telnet en la Nube con Reporte Automático a AbuseIPDB
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)
 ![Platform](https://img.shields.io/badge/Platform-Linux-orange?style=flat-square&logo=linux)
@@ -8,13 +7,13 @@
 ![Community](https://img.shields.io/badge/Community-AbuseIPDB-brightgreen?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)
 
-> Sistema de trampa activo en la nube que captura, analiza y reporta automaticamente amenazas reales a la comunidad global de ciberseguridad.
+> Sistema de trampa activo en la nube que captura, analiza y reporta automáticamente amenazas reales a la comunidad global de ciberseguridad.
 
 ---
 
-## Que hace este proyecto?
+# ¿Qué hace este proyecto?
 
-Este honeypot simula un servidor SSH/Telnet vulnerable expuesto en Internet para atraer atacantes reales. Cada intento de intrusion es **registrado, analizado y reportado automaticamente** a [AbuseIPDB](https://www.abuseipdb.com/), contribuyendo a una base de datos global de amenazas utilizada por miles de organizaciones en el mundo.
+Este honeypot simula un servidor SSH/Telnet vulnerable expuesto en Internet para atraer atacantes reales. Cada intento de intrusión es **registrado, analizado y reportado automáticamente** a AbuseIPDB, contribuyendo a una base de datos global de amenazas utilizada por miles de organizaciones.
 
 ```text
 Internet
@@ -42,29 +41,29 @@ Internet
                |  Alerta en      |          |  Reporte de IP  |  |  Almacenamiento |
                |  tiempo real    |          |  maliciosa      |  |  local          |
                └─────────────────┘          └─────────────────┘  └─────────────────┘
-````
+```
 
 ---
 
-## Objetivos del Proyecto
+# Objetivos del Proyecto
 
-* **Recoleccion de Inteligencia:** Capturar TTPs (Tacticas, Tecnicas y Procedimientos) de atacantes reales
-* **Contribucion Comunitaria:** Reportar IPs maliciosas a AbuseIPDB para proteger a otros sistemas
-* **Alertas en Tiempo Real:** Notificacion instantanea via Telegram de cada intento de intrusion
-* **Analisis de Patrones:** Identificar tendencias de ataque, paises de origen y herramientas usadas
+- **Recolección de Inteligencia:** Capturar TTPs (Tácticas, Técnicas y Procedimientos) de atacantes reales
+- **Contribución Comunitaria:** Reportar IPs maliciosas a AbuseIPDB
+- **Alertas en Tiempo Real:** Notificación instantánea vía Telegram
+- **Análisis de Patrones:** Identificar tendencias de ataque y herramientas usadas
 
 ---
 
-## Stack Tecnologico
+# Stack Tecnológico
 
-| Componente          | Tecnologia             | Funcion                               |
-| ------------------- | ---------------------- | ------------------------------------- |
-| **Honeypot**        | Cowrie                 | Simula servidor SSH/Telnet vulnerable |
-| **Infraestructura** | Oracle Cloud (OCI)     | Instancia expuesta en Internet        |
-| **Alertas**         | Python + Telegram API  | Notificaciones en tiempo real         |
-| **Reporte**         | Python + AbuseIPDB API | Reporte automatico de IPs maliciosas  |
-| **SO**              | Debian/Ubuntu Linux    | Sistema base del servidor             |
-| **Logs**            | JSON + Cowrie logs     | Almacenamiento de eventos             |
+| Componente | Tecnología | Función |
+|---|---|---|
+| Honeypot | Cowrie | Simula servidor SSH/Telnet vulnerable |
+| Infraestructura | Oracle Cloud (OCI) | Instancia expuesta en Internet |
+| Alertas | Python + Telegram API | Notificaciones en tiempo real |
+| Reporte | Python + AbuseIPDB API | Reporte automático de IPs |
+| SO | Debian/Ubuntu Linux | Sistema operativo base |
+| Logs | JSON + Cowrie logs | Almacenamiento de eventos |
 
 ---
 
@@ -83,7 +82,7 @@ Oracle Cloud Infrastructure (OCI)
 |  |  |  └── Python Scripts     |  |  |
 |  |  └─────────────────────────┘  |  |
 |  |  Security List:               |  |
-|  |  ├── Ingress: 22, 23 (0.0.0.0)|  |
+|  |  ├── Ingress: 22,23           |  |
 |  |  └── Egress: All              |  |
 |  └───────────────────────────────┘  |
 └─────────────────────────────────────┘
@@ -91,9 +90,9 @@ Oracle Cloud Infrastructure (OCI)
 
 ---
 
-# Honeypot en Ejecucion
+# Honeypot en Ejecución
 
-Vista de Cowrie ejecutandose en la instancia OCI monitoreando conexiones SSH/Telnet en tiempo real.
+Vista de Cowrie ejecutándose en la instancia OCI monitoreando conexiones SSH/Telnet en tiempo real.
 
 <p align="center">
   <img src="./docs/screenshots/cowrie-running.png" width="950">
@@ -101,29 +100,35 @@ Vista de Cowrie ejecutandose en la instancia OCI monitoreando conexiones SSH/Tel
 
 ---
 
-## Instalacion y Configuracion
+# Instalación y Configuración
 
-### Prerrequisitos
+## Prerrequisitos
 
-* Cuenta en Oracle Cloud (Free Tier disponible)
-* Python 3.8+
-* Token de Bot de Telegram
-* API Key de AbuseIPDB
+- Cuenta en Oracle Cloud (Free Tier)
+- Python 3.8+
+- Bot Token de Telegram
+- API Key de AbuseIPDB
 
-### 1. Clonar el repositorio
+---
+
+## 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/Luyi-gg/honeypot-cowrie-oci.git
 cd honeypot-cowrie-oci
 ```
 
-### 2. Instalar dependencias
+---
+
+## 2. Instalar dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Instalar y configurar Cowrie
+---
+
+## 3. Instalar y configurar Cowrie
 
 ```bash
 sudo apt-get install git python3-virtualenv libssl-dev libffi-dev build-essential python3-dev
@@ -139,13 +144,15 @@ sudo -u cowrie virtualenv cowrie-env
 sudo -u cowrie cowrie-env/bin/pip install -r requirements.txt
 ```
 
-### 4. Configurar variables de entorno
+---
+
+## 4. Configurar variables de entorno
 
 ```bash
 cp .env.example .env
 ```
 
-Edita `.env`:
+Editar `.env`:
 
 ```env
 TELEGRAM_BOT_TOKEN=tu_token_aqui
@@ -154,7 +161,9 @@ ABUSEIPDB_API_KEY=tu_api_key_aqui
 COWRIE_LOG_PATH=/home/cowrie/cowrie/var/log/cowrie/cowrie.json
 ```
 
-### 5. Ejecutar el monitor
+---
+
+## 5. Ejecutar el monitor
 
 ```bash
 python3 src/monitor.py
@@ -162,7 +171,7 @@ python3 src/monitor.py
 
 ---
 
-## Estructura del Proyecto
+# Estructura del Proyecto
 
 ```text
 honeypot-cowrie-oci/
@@ -195,7 +204,7 @@ honeypot-cowrie-oci/
 
 # Datos Recolectados (Muestra)
 
-Ejemplo de eventos capturados en las primeras 24 horas de operacion:
+Ejemplo de eventos capturados en las primeras 24 horas de operación:
 
 ```json
 {
@@ -204,12 +213,17 @@ Ejemplo de eventos capturados en las primeras 24 horas de operacion:
   "country": "CN",
   "username": "root",
   "password": "admin123",
-  "commands_executed": ["cat /etc/passwd", "wget http://[redacted]"],
+  "commands_executed": [
+    "cat /etc/passwd",
+    "wget http://[redacted]"
+  ],
   "session_duration": "00:02:34"
 }
 ```
 
-### Ejemplo visual de eventos capturados
+---
+
+## Ejemplo visual de eventos capturados
 
 <p align="center">
   <img src="./docs/screenshots/sample-log.png" width="850">
@@ -217,50 +231,53 @@ Ejemplo de eventos capturados en las primeras 24 horas de operacion:
 
 ---
 
-# Estadisticas del Honeypot
+# Estadísticas del Honeypot
 
-| Metrica               | Valor   |
-| --------------------- | ------- |
-| IPs unicas detectadas | 2,970   |
-| IPs bloqueadas        | 2,702   |
-| Intentos totales      | 182,013 |
-| Logins fallidos       | 6,095   |
-| Logins exitosos       | 13,815  |
-| Comandos ejecutados   | 13,616  |
-
----
-
-## Top 20 IPs mas agresivas
-
-| # | IP              | Intentos | Pais |
-| - | --------------- | -------- | ---- |
-| 1 | 45.85.180.143   | 59,568   | DO   |
-| 2 | 139.59.236.63   | 6,138    | SG   |
-| 3 | 87.251.64.176   | 4,574    | PL   |
-| 4 | 192.109.200.237 | 3,567    | NL   |
-| 5 | 213.209.159.154 | 3,530    | DE   |
+| Métrica | Valor |
+|---|---|
+| IPs únicas detectadas | 2,970 |
+| IPs bloqueadas | 2,702 |
+| Intentos totales | 182,013 |
+| Logins fallidos | 6,095 |
+| Logins exitosos | 13,815 |
+| Comandos ejecutados | 13,616 |
 
 ---
 
-## Top 10 Paises Atacantes
+# Top 20 IPs más agresivas
 
-| #    | País                    | IPs únicas | % del total |
-| ---- | ----------------------- | ---------- | ----------- |
-| 🥇 1 | 🇺🇸 United States      | 657        | 19.6%       |
-| 🥈 2 | 🇨🇳 China              | 390        | 11.6%       |
-| 🥉 3 | 🇩🇴 Dominican Republic | 193        | 5.7%        |
+| # | IP | Intentos | País |
+|---|---|---|---|
+| 1 | 45.85.180.143 | 59,568 | DO |
+| 2 | 139.59.236.63 | 6,138 | SG |
+| 3 | 87.251.64.176 | 4,574 | PL |
+| 4 | 192.109.200.237 | 3,567 | NL |
+| 5 | 213.209.159.154 | 3,530 | DE |
 
 ---
 
-# Contribucion a la Comunidad
+# Top 10 Países Atacantes
 
-Este proyecto reporta automaticamente IPs maliciosas a **[AbuseIPDB](https://www.abuseipdb.com/)**, una base de datos colaborativa utilizada por:
+| # | País | IPs únicas | % del total |
+|---|---|---|---|
+| 🥇 1 | 🇺🇸 United States | 657 | 19.6% |
+| 🥈 2 | 🇨🇳 China | 390 | 11.6% |
+| 🥉 3 | 🇩🇴 Dominican Republic | 193 | 5.7% |
 
-* Empresas de seguridad
-* Proveedores de hosting
-* Firewalls y sistemas IDS/IPS
+---
 
-### Perfil de reportes en AbuseIPDB
+# Contribución a la Comunidad
+
+Este proyecto reporta automáticamente IPs maliciosas a AbuseIPDB, una plataforma utilizada por:
+
+- Empresas de seguridad
+- Firewalls
+- IDS/IPS
+- Proveedores de hosting
+
+---
+
+## Perfil de reportes en AbuseIPDB
 
 <p align="center">
   <img src="./docs/screenshots/abuseipdb-profile.png" width="850">
@@ -288,7 +305,9 @@ Duracion sesion: 1m 47s
 Reportado a AbuseIPDB: SI
 ```
 
-### Captura real de alerta enviada por el bot
+---
+
+## Captura real de alerta enviada por el bot
 
 <p align="center">
   <img src="./docs/screenshots/telegram-alert.png" width="450">
@@ -296,9 +315,9 @@ Reportado a AbuseIPDB: SI
 
 ---
 
-# Configuracion Avanzada del Honeypot
+# Configuración Avanzada del Honeypot
 
-## Multiples puertos de escucha
+## Múltiples puertos de escucha
 
 ```ini
 [ssh]
@@ -308,6 +327,10 @@ listen_port = 2222
 listen_port = 2323
 enabled = true
 ```
+
+---
+
+## Redirección de puertos con iptables
 
 ```bash
 sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
@@ -333,20 +356,20 @@ Disconnect IMMEDIATELY if you are not an authorized user.
 
 ---
 
-# Lo que aprendi
+# Lo que aprendí
 
-* Despliegue y administracion de instancias en Oracle Cloud Infrastructure
-* Configuracion y operacion de honeypots SSH/Telnet con Cowrie
-* Integracion de APIs externas con Python
-* Analisis de logs en tiempo real
-* Threat Intelligence y recoleccion de indicadores
-* Hardening basico de servidores Linux
+- Despliegue y administración de instancias en Oracle Cloud
+- Configuración y operación de honeypots SSH/Telnet con Cowrie
+- Integración de APIs externas con Python
+- Análisis de logs en tiempo real
+- Threat Intelligence
+- Hardening básico de servidores Linux
 
 ---
 
 # Disclaimer
 
-> Este proyecto fue desarrollado unicamente con fines educativos y de investigacion en ciberseguridad. El honeypot opera en una instancia aislada y no tiene acceso a sistemas de produccion ni datos sensibles.
+> Este proyecto fue desarrollado únicamente con fines educativos y de investigación en ciberseguridad. El honeypot opera en una instancia aislada y no tiene acceso a sistemas de producción ni datos sensibles.
 
 ---
 
@@ -354,12 +377,9 @@ Disconnect IMMEDIATELY if you are not an authorized user.
 
 **Luis SC**
 
-* [LinkedIn](https://linkedin.com/in/luis-angel-sc)
-* [GitHub](https://github.com/luis-angel-sc)
+- LinkedIn: https://linkedin.com/in/luis-angel-sc
+- GitHub: https://github.com/luis-angel-sc
 
 ---
 
-⭐ Si este proyecto te fue util o aprendiste algo, considera darle una estrella al repositorio.
-
-```
-```
+⭐ Si este proyecto te fue útil o aprendiste algo, considera darle una estrella al repositorio.
