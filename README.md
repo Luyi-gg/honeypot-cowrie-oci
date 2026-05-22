@@ -320,7 +320,7 @@ Reportado a AbuseIPDB: SI
 ## Captura real de alerta enviada por el bot
 
 <p align="center">
-  <img src="./docs/screenshots/telegram-alert.png" width="250">
+  <img src="./docs/screenshots/telegram-alert.png" width="700">
 </p>
 
 ---
