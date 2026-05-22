@@ -87,8 +87,8 @@ Oracle Cloud Infrastructure (OCI)
 |  |  |  ├── Cowrie (Tel :23)   |  |  |
 |  |  |  └── Python Scripts     |  |  |
 |  |  └─────────────────────────┘  |  |
-|  |  Security List:               |  |
-|  |  ├── Ingress: 22,23           |  |
+|  |  Security ports List:         |  |
+|  |  ├── Ingress: personalizados  |  |
 |  |  └── Egress: All              |  |
 |  └───────────────────────────────┘  |
 └─────────────────────────────────────┘
