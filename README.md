@@ -95,7 +95,7 @@ Oracle Cloud Infrastructure (OCI)
 Vista de Cowrie ejecutándose en la instancia OCI monitoreando conexiones SSH/Telnet en tiempo real.
 
 <p align="center">
-  <img src="./docs/screenshots/cowrie-running.png" width="950">
+  <img src="./docs/screenshots/cowrie-running.png" width="500">
 </p>
 
 ---
@@ -226,7 +226,7 @@ Ejemplo de eventos capturados en las primeras 24 horas de operación:
 ## Ejemplo visual de eventos capturados
 
 <p align="center">
-  <img src="./docs/screenshots/sample-log.png" width="850">
+  <img src="./docs/screenshots/sample-log.png" width="450">
 </p>
 
 ---
@@ -244,7 +244,7 @@ Ejemplo de eventos capturados en las primeras 24 horas de operación:
 
 ---
 
-# Top 20 IPs más agresivas
+# Top 10 IPs con Mayor Actividad Maliciosa
 
 | # | IP | Intentos | País |
 |---|---|---|---|
@@ -253,16 +253,26 @@ Ejemplo de eventos capturados en las primeras 24 horas de operación:
 | 3 | 87.251.64.176 | 4,574 | PL |
 | 4 | 192.109.200.237 | 3,567 | NL |
 | 5 | 213.209.159.154 | 3,530 | DE |
+| 6 | 176.65.132.129 | 3,507 | NL |
+| 7 | 176.65.132.17 | 3,203 | NL |
+| 8 | 45.156.87.204 | 3,159 | NL |
+| 9 | 85.11.167.2 | 2,154 | BG |
+| 10 | 141.227.190.54 | 1,915 | CZ |
 
 ---
 
-# Top 10 Países Atacantes
+# Top 8 Países de Origen de Ataques
 
 | # | País | IPs únicas | % del total |
 |---|---|---|---|
 | 🥇 1 | 🇺🇸 United States | 657 | 19.6% |
 | 🥈 2 | 🇨🇳 China | 390 | 11.6% |
 | 🥉 3 | 🇩🇴 Dominican Republic | 193 | 5.7% |
+| 4 | 🇬🇧 United Kingdom | 133 | 4.0% |
+| 5 | 🇧🇷 Brazil | 95 | 2.8% |
+| 6 | 🇸🇬 Singapore | 86 | 2.6% |
+| 7 | 🇭🇰 Hong Kong | 62 | 1.8% |
+| 8 | 🇮🇳 India | 62 | 1.8% |
 
 ---
 
@@ -280,7 +290,7 @@ Este proyecto reporta automáticamente IPs maliciosas a AbuseIPDB, una plataform
 ## Perfil de reportes en AbuseIPDB
 
 <p align="center">
-  <img src="./docs/screenshots/abuseipdb-profile.png" width="850">
+  <img src="./docs/screenshots/abuseipdb-profile.png" width="450">
 </p>
 
 ---
@@ -310,7 +320,7 @@ Reportado a AbuseIPDB: SI
 ## Captura real de alerta enviada por el bot
 
 <p align="center">
-  <img src="./docs/screenshots/telegram-alert.png" width="450">
+  <img src="./docs/screenshots/telegram-alert.png" width="250">
 </p>
 
 ---
